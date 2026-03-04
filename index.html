@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Women at Lumberfi — Where Kannagi Meets Code</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #E8621A;
+    --deep-red: #B91C1C;
+    --gold: #D4A017;
+    --cream: #FAF5EB;
+    --bark: #2C1810;
+    --ash: #4A3728;
+    --sage: #6B7B5E;
+    --sky: #C8D8E8;
+    --midnight: #0F172A;
+    --ember: #FF6B35;
+    --silk: #F5E6D0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--bark);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--midnight);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 4rem 2rem;
+  }
+
+  .hero-texture {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(ellipse 80% 50% at 20% 80%, rgba(232,98,26,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(212,160,23,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 50% 50%, rgba(185,28,28,0.08) 0%, transparent 70%);
+  }
+
+  .kolam {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='60' cy='60' r='50' fill='none' stroke='%23E8621A' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='35' fill='none' stroke='%23E8621A' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='20' fill='none' stroke='%23E8621A' stroke-width='1'/%3E%3Cline x1='10' y1='60' x2='110' y2='60' stroke='%23E8621A' stroke-width='0.5'/%3E%3Cline x1='60' y1='10' x2='60' y2='110' stroke='%23E8621A' stroke-width='0.5'/%3E%3Cline x1='24' y1='24' x2='96' y2='96' stroke='%23E8621A' stroke-width='0.5'/%3E%3Cline x1='96' y1='24' x2='24' y2='96' stroke='%23E8621A' stroke-width='0.5'/%3E%3C/svg%3E");
+    background-size: 120px 120px;
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--saffron);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+    padding: 0 0.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 8vw, 6rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.05;
+    max-width: 900px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+    padding: 0 0.5rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--saffron);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.92rem, 2.5vw, 1.15rem);
+    color: rgba(250,245,235,0.65);
+    max-width: 580px;
+    margin-top: 1.5rem;
+    line-height: 1.7;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+    padding: 0 0.5rem;
+  }
+
+  .hero-date {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+    padding: 0 1rem;
+  }
+
+  .hero-date span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+  }
+
+  .hero-date .dot { color: rgba(250,245,235,0.3); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+  }
+
+  .scroll-hint span {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: rgba(250,245,235,0.4);
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--saffron), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* SECTION WRAPPER */
+  .section {
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    color: var(--saffron);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  /* KANNAGI STORY */
+  .kannagi-section {
+    background: var(--midnight);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kannagi-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .kannagi-quote {
+    position: relative;
+  }
+
+  .big-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 10rem;
+    color: var(--saffron);
+    opacity: 0.15;
+    line-height: 0.7;
+    position: absolute;
+    top: -1.5rem;
+    left: -1.5rem;
+    pointer-events: none;
+  }
+
+  .kannagi-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--cream);
+    position: relative;
+    z-index: 1;
+  }
+
+  .kannagi-attribution {
+    margin-top: 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .kannagi-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(250,245,235,0.75);
+    font-weight: 300;
+  }
+
+  .kannagi-body strong {
+    color: var(--saffron);
+    font-weight: 600;
+  }
+
+  .kannagi-body p + p { margin-top: 1.2rem; }
+
+  .flame-divider {
+    text-align: center;
+    font-size: 2rem;
+    margin: 1.5rem 0;
+    opacity: 0.6;
+  }
+
+  /* 2AM SECTION */
+  .twam-section {
+    background: var(--silk);
+  }
+
+  .twam-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+
+  .twam-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--bark);
+    margin-bottom: 0.5rem;
+  }
+
+  .twam-title em { color: var(--saffron); font-style: italic; }
+
+  .twam-subtitle {
+    font-size: 1rem;
+    color: var(--ash);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  .terminal {
+    background: #0D1117;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(15,23,42,0.3);
+    max-width: 680px;
+  }
+
+  .terminal-bar {
+    background: #1C2128;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dot-r { width: 12px; height: 12px; border-radius: 50%; background: #FF5F57; }
+  .dot-y { width: 12px; height: 12px; border-radius: 50%; background: #FFBD2E; }
+  .dot-g { width: 12px; height: 12px; border-radius: 50%; background: #28C840; }
+
+  .terminal-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(250,245,235,0.4);
+    margin-left: 0.5rem;
+  }
+
+  .terminal-body {
+    padding: 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    line-height: 1.9;
+  }
+
+  .t-line { color: rgba(250,245,235,0.5); }
+  .t-prompt { color: #28C840; }
+  .t-cmd { color: #79C0FF; }
+  .t-output { color: rgba(250,245,235,0.85); }
+  .t-highlight { color: var(--saffron); font-weight: 500; }
+  .t-comment { color: #6E7681; }
+  .t-success { color: #3FB950; }
+
+  .twam-body-text {
+    margin-top: 2.5rem;
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--ash);
+    max-width: 720px;
+  }
+
+  .twam-body-text strong { color: var(--bark); }
+
+  /* STATS */
+  .stats-section {
+    background: var(--saffron);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .stats-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    position: relative;
+  }
+
+  .stats-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    color: var(--midnight);
+    margin-bottom: 3rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    background: rgba(15,23,42,0.9);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+
+  .stat-card:hover { transform: translateY(-4px); }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: rgba(250,245,235,0.7);
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+  }
+
+  .benefits-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .benefit-tag {
+    background: rgba(15,23,42,0.8);
+    color: var(--cream);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(212,160,23,0.3);
+  }
+
+  /* QUOTES */
+  .quotes-section {
+    background: var(--cream);
+  }
+
+  .quotes-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+
+  .quotes-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--bark);
+    margin-bottom: 3rem;
+  }
+
+  .quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .quote-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    border-left: 4px solid var(--saffron);
+    box-shadow: 0 4px 24px rgba(44,24,16,0.08);
+    position: relative;
+    transition: box-shadow 0.3s, transform 0.3s;
+    cursor: default;
+  }
+
+  .quote-card:hover {
+    box-shadow: 0 12px 40px rgba(44,24,16,0.14);
+    transform: translateY(-3px);
+  }
+
+  .qmark {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--saffron);
+    opacity: 0.2;
+    line-height: 1;
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+  }
+
+  .quote-text {
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: var(--ash);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .quote-name {
+    font-weight: 600;
+    color: var(--bark);
+    font-size: 0.9rem;
+  }
+
+  .quote-role {
+    font-size: 0.78rem;
+    color: var(--saffron);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.08em;
+    margin-top: 0.2rem;
+  }
+
+  /* AI SHAPES */
+  .ai-section {
+    background: var(--bark);
+    color: var(--cream);
+  }
+
+  .ai-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .ai-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .ai-title em { color: var(--gold); font-style: italic; }
+
+  .ai-body {
+    font-size: 0.98rem;
+    line-height: 1.85;
+    color: rgba(250,245,235,0.72);
+    font-weight: 300;
+  }
+
+  .ai-body p + p { margin-top: 1.2rem; }
+
+  .ai-body strong { color: var(--cream); font-weight: 600; }
+
+  .shape-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .shape-item {
+    background: rgba(250,245,235,0.06);
+    border: 1px solid rgba(250,245,235,0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: background 0.3s;
+  }
+
+  .shape-item:hover { background: rgba(250,245,235,0.1); }
+
+  .shape-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .shape-name {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .shape-desc {
+    font-size: 0.85rem;
+    color: rgba(250,245,235,0.55);
+    line-height: 1.6;
+  }
+
+  /* CLOSING */
+  .closing-section {
+    background: linear-gradient(135deg, var(--deep-red) 0%, var(--midnight) 60%);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 70% at 80% 50%, rgba(232,98,26,0.2) 0%, transparent 60%);
+  }
+
+  .closing-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 7rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .closing-kannada {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+  }
+
+  .closing-translation {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(250,245,235,0.45);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+  }
+
+  .closing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+  }
+
+  .closing-title em { color: var(--saffron); font-style: italic; }
+
+  .closing-body {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: rgba(250,245,235,0.72);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+  }
+
+  .closing-body strong { color: var(--cream); }
+
+  .hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .hashtag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(250,245,235,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  /* PROGRESS BARS */
+  .progress-row {
+    margin-top: 2.5rem;
+  }
+
+  .progress-item {
+    margin-bottom: 1.2rem;
+  }
+
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(250,245,235,0.6);
+    margin-bottom: 0.4rem;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .progress-bar {
+    height: 4px;
+    background: rgba(250,245,235,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--saffron), var(--gold));
+    border-radius: 4px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .progress-fill.animated { transform: scaleX(1); }
+
+  /* DIVIDER */
+  .ornament-divider {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--saffron);
+    opacity: 0.4;
+    margin: 1.5rem 0;
+    letter-spacing: 1rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .kannagi-inner, .ai-inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .quotes-grid {
+      grid-template-columns: 1fr;
+    }
+    .nav-dots { display: none; }
+    .hero { padding: 5rem 1.25rem 4rem; min-height: 100svh; }
+    .hero-tag { font-size: 0.62rem; letter-spacing: 0.08em; }
+    .hero-date .dot { display: none; }
+    .hero-date { flex-direction: column; gap: 0.3rem; }
+    .terminal { font-size: 0.72rem; }
+    .terminal-body { padding: 1rem; font-size: 0.72rem; }
+    .big-quote { font-size: 6rem; }
+    .kannagi-text { font-size: 1.3rem; }
+  }
+
+  /* NAV DOTS */
+  .nav-dots {
+    position: fixed;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 100;
+  }
+
+  .nav-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(232,98,26,0.3);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .nav-dot.active {
+    background: var(--saffron);
+    transform: scale(1.4);
+  }
+
+  /* LUMBERFI BRAND LINE */
+  .brand-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--saffron), var(--gold), var(--deep-red));
+    z-index: 200;
+  }
+
+  .read-progress {
+    height: 100%;
+    background: rgba(250,245,235,0.3);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.1s;
+  }
+</style>
+</head>
+<body>
+
+<div class="brand-bar">
+  <div class="read-progress" id="readProgress"></div>
+</div>
+
+<nav class="nav-dots" id="navDots">
+  <div class="nav-dot active" data-section="0" title="Intro"></div>
+  <div class="nav-dot" data-section="1" title="Kannagi"></div>
+  <div class="nav-dot" data-section="2" title="2 AM"></div>
+  <div class="nav-dot" data-section="3" title="By the Numbers"></div>
+  <div class="nav-dot" data-section="4" title="Voices"></div>
+  <div class="nav-dot" data-section="5" title="AI & Growth"></div>
+  <div class="nav-dot" data-section="6" title="Close"></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="s0">
+  <div class="hero-texture"></div>
+  <div class="kolam"></div>
+  <div style="position:relative; z-index:1;">
+    <p class="hero-tag">International Women's Day 2025 · Lumberfi · Whitefield, Bengaluru</p>
+    <h1 class="hero-title">
+      Where <em>Kannagi</em><br>Meets <em>Code</em>
+    </h1>
+    <p class="hero-subtitle">
+      Two thousand years ago, a woman burned a city for justice. Today, her daughters are building AI — and they're doing it without asking for permission.
+    </p>
+    <div class="hero-date">
+      <span>8 March 2025</span>
+      <span class="dot">◆</span>
+      <span>Lumberfi · Whitefield, Bengaluru</span>
+      <span class="dot">◆</span>
+      <span>deivettu · dhanyavadagalu</span>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- KANNAGI -->
+<section class="kannagi-section" id="s1">
+  <div class="kannagi-inner">
+    <div class="kannagi-quote reveal">
+      <div class="big-quote">"</div>
+      <p class="kannagi-text">
+        "I am not a woman who weeps in silence. I am fire. And fire does not ask permission."
+      </p>
+      <p class="kannagi-attribution">— Kannagi, Cilappatikāram · c. 2nd century CE</p>
+    </div>
+    <div class="kannagi-body reveal">
+      <p>The Cilappatikāram — one of Tamil literature's greatest epics — tells us of <strong>Kannagi</strong>, a woman wronged by a king's court. She did not petition. She did not compromise. She tore off her ankle-bracelet, struck the ground, and set Madurai ablaze with righteous truth.</p>
+
+      <div class="flame-divider">🔥</div>
+
+      <p>The king had the power. The court had the process. But <strong>Kannagi had the facts</strong> — and the courage to present them without apology.</p>
+
+      <p>Two thousand years later, we sat in a play at <strong>Whitefield</strong> and watched her story unfold. Walking back, we realized: <strong>every woman at Lumberfi carries a piece of that fire.</strong></p>
+
+      <p>Not the destruction. The <em>clarity</em>. The refusal to let bias masquerade as process. The insistence that what is right matters more than what is comfortable.</p>
+
+      <p>The question this Women's Day is not "are women good at tech?" — that's been answered. The question is: <strong>will AI inherit Kannagi's courage, or the king's blind court?</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 AM SECTION -->
+<section class="twam-section" id="s2">
+  <div class="twam-inner">
+    <p class="section-label reveal">The Lumberfi Story</p>
+    <h2 class="twam-title reveal">It's <em>2 AM</em> in Bengaluru.<br>The client can't wait.</h2>
+    <p class="twam-subtitle reveal">At Lumberfi, we build AI-powered systems for the lumber industry — materials sourcing, estimation, project management. Our clients are contractors, builders, project managers. They don't work 9-to-5. Neither do we.</p>
+
+    <div class="terminal reveal">
+      <div class="terminal-bar">
+        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+        <span class="terminal-title">lumberfi-prod · incident-response · 02:14 IST</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-comment"># Client estimate engine down. Deadline: 6 AM EST.</span></div>
+        <br>
+        <div class="t-line"><span class="t-prompt">niharika@lumberfi</span><span style="color:#fff">:</span><span class="t-cmd">~$ ./run-qa-checks.sh --env prod</span></div>
+        <div class="t-line"><span class="t-output">  ▸ QA cleared by: </span><span class="t-highlight">Niharika (QA) ✓</span></div>
+        <div class="t-line"><span class="t-output">  ▸ Niharika ships product to: </span><span class="t-highlight">Production ✓</span></div>
+        <div class="t-line"><span class="t-output">  ▸ Dev review: </span><span class="t-highlight">Ayushi (Dev Lead) ✓</span></div>
+        <div class="t-line"><span class="t-output">  ▸ Product sign: </span><span class="t-highlight">Bhuwaneshwari (AI Product Lead) ✓</span></div>
+        <div class="t-line"><span class="t-output">  ▸ Research flag cleared: </span><span class="t-highlight">Anusha (PMR) ✓</span></div>
+        <br>
+        <div class="t-line"><span class="t-success">✓ Deployed. Client estimate engine: LIVE at 03:41 IST</span></div>
+        <div class="t-line"><span class="t-comment"># Client woke up to a working product. No one asked who stayed latest.</span></div>
+      </div>
+    </div>
+
+    <div class="twam-body-text reveal">
+      <p>That's not a hypothetical. That's a Tuesday at Lumberfi.</p>
+      <p>The women on our Dev, QA, and Product teams don't choose this work because it's easy. They choose it because <strong>the client is the mission</strong>. Not gender. Not hierarchy. Not who stayed latest. Merit, and the will to serve.</p>
+      <p>Breaking prejudice isn't a slogan here — it's what happens when the alarm goes off at 2 AM and <strong>the best engineer on call happens to be a woman</strong>. And she delivers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section" id="s3">
+  <div class="stats-inner">
+    <p class="section-label" style="color: rgba(15,23,42,0.6);">By the numbers</p>
+    <h2 class="stats-title reveal">Not Diversity Theater.<br>Actual Numbers.</h2>
+    <div class="stats-grid reveal">
+      <div class="stat-card">
+        <div class="stat-number">40<span style="font-size:1.8rem">%</span></div>
+        <div class="stat-label">of technical roles held<br>by women at Lumberfi</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label">women in senior leadership &amp; product decision-making</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100<span style="font-size:1.8rem">%</span></div>
+        <div class="stat-label">remote-flex available to all employees, always</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">12</div>
+        <div class="stat-label">paid menstrual leave<br>days per year</div>
+      </div>
+    </div>
+
+    <div class="progress-row reveal" id="progressBars">
+      <div class="progress-item">
+        <div class="progress-label"><span>Women in AI/ML roles</span><span>38%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="--w:0.38"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-label"><span>Women in QA &amp; Dev</span><span>42%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="--w:0.42"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-label"><span>Women in leadership decisions</span><span>50%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="--w:0.50"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-label"><span>WFH adoption</span><span>85%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="--w:0.85"></div></div>
+      </div>
+    </div>
+
+    <div class="benefits-row reveal" style="margin-top:2.5rem;">
+      <span class="benefit-tag">🌿 Menstrual leave</span>
+      <span class="benefit-tag">🏠 Full WFH flexibility</span>
+      <span class="benefit-tag">📈 Merit-based promotion</span>
+      <span class="benefit-tag">🤝 No marriage penalty</span>
+      <span class="benefit-tag">🧠 T-shaped learning budget</span>
+      <span class="benefit-tag">⚖️ Equal on-call rotation</span>
+      <span class="benefit-tag">💬 Leadership voice in AI design</span>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section class="quotes-section" id="s4">
+  <div class="quotes-inner">
+    <p class="section-label reveal">In their own words</p>
+    <h2 class="quotes-title reveal">The Women<br>Building Lumberfi's AI</h2>
+    <div class="quotes-grid reveal">
+      <div class="quote-card">
+        <span class="qmark">"</span>
+        <p class="quote-text">The debates at 11 PM about whether an AI estimate is fair — those are my most alive moments. We're not shipping features. We're building something that touches people's livelihoods. That demands empathy, not just accuracy.</p>
+        <p class="quote-name">Bhuwaneshwari</p>
+        <p class="quote-role">AI Product Lead · Lumberfi</p>
+      </div>
+      <div class="quote-card">
+        <span class="qmark">"</span>
+        <p class="quote-text">When I raise a concern about AI bias in our pricing models, it doesn't get dismissed — it gets a Jira ticket and a sprint. That's rare. That's Lumberfi.</p>
+        <p class="quote-name">Ayushi</p>
+        <p class="quote-role">Dev Lead · Lumberfi</p>
+      </div>
+      <div class="quote-card">
+        <span class="qmark">"</span>
+        <p class="quote-text">My mother chose marriage over career in '92 because she had no option. I chose Lumberfi because I had every option — and they never made me feel like a woman first, engineer second.</p>
+        <p class="quote-name">Anusha</p>
+        <p class="quote-role">Product Market Researcher · Lumberfi</p>
+      </div>
+    </div>
+
+    <div class="quote-card reveal" style="margin-top:2rem; border-left-color: var(--gold);">
+      <span class="qmark" style="color:var(--gold);">"</span>
+      <p class="quote-text">Quality isn't a checkpoint — it's a mindset. Every release I sign off on has a client's livelihood attached to it. That's not pressure. That's purpose.</p>
+      <p class="quote-name">Neelima</p>
+      <p class="quote-role">Principal Quality Assurance Engineer · Lumberfi</p>
+    </div>
+  </div>
+</section>
+
+<!-- AI & T-SHAPED -->
+<section class="ai-section" id="s5">
+  <div class="ai-inner">
+    <div>
+      <p class="section-label" style="color:var(--gold); opacity:0.7;">Breaking 1000 Years of Prejudice</p>
+      <h2 class="ai-title reveal">T-shaped. M-shaped.<br><em>Kannagi-shaped.</em></h2>
+      <div class="ai-body reveal">
+        <p>For a thousand years, the world told women to stay narrow. One role. One room. One lane.</p>
+        <p>Kannagi refused. She was wife, witness, prosecutor, and force of nature — all at once. <strong>Multi-domain. Uncontainable.</strong></p>
+        <p>That's exactly what AI needs now. Not specialists who only see their corner of the code. But <strong>T-shaped thinkers</strong> (deep expertise, broad empathy) and <strong>M-shaped builders</strong> (multiple domains, multiple truths) who can question what the model assumes and who it forgets.</p>
+        <p>A startup like Lumberfi is one of the rare places where young women get that platform — without being asked to shrink first. The prejudice of a thousand years doesn't break with a policy. It breaks when <strong>Niharika ensures every product ships without a single bug, Ayushi reviews the architecture, Bhuwaneshwari decides the AI product direction, and Anusha tells us what the market actually needs.</strong></p>
+        <p>That's not diversity. That's how good AI gets built.</p>
+      </div>
+    </div>
+    <div class="shape-diagram reveal">
+      <div class="shape-item">
+        <div class="shape-letter">T</div>
+        <div class="shape-name">T-Shaped</div>
+        <div class="shape-desc">Deep in one domain. Broad across engineering, business & design. Breaks the "stay in your lane" prejudice that held women back for centuries.</div>
+      </div>
+      <div class="shape-item">
+        <div class="shape-letter">M</div>
+        <div class="shape-name">M-Shaped</div>
+        <div class="shape-desc">Multiple domains of depth — AI, client psychology, market research, ethics. Exactly what Kannagi was. Exactly what AI needs.</div>
+      </div>
+      <div class="shape-item" style="border-color: rgba(212,160,23,0.3);">
+        <div class="shape-letter" style="color:var(--saffron); font-size:2rem;">🔥</div>
+        <div class="shape-name">The Kannagi Variable</div>
+        <div class="shape-desc">The courage to present uncomfortable truths to the system — even when the king, the court, or the codebase says otherwise.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing-section" id="s6">
+  <div class="closing-inner">
+    <p class="closing-kannada reveal">ದೇವೆಟ್ಟು · ಧನ್ಯವಾದಗಳು</p>
+    <p class="closing-translation reveal">With gratitude · Thank you · (Kannada)</p>
+
+    <div class="ornament-divider reveal">✦ ✦ ✦</div>
+
+    <h2 class="closing-title reveal">
+      Women at Lumberfi<br>envision an AI that doesn't<br>repeat the <em>king's mistake.</em>
+    </h2>
+
+    <div class="closing-body reveal">
+      <p>The Madurai king had data, advisors, and process. He still got it wrong — because <strong>no one in the room questioned the system.</strong></p>
+      <p>The women at Lumberfi are the Kannagis in every room. They question the model, defend the client, and build AI that doesn't repeat thousand-year-old mistakes.</p>
+      <p>In the age of AI jargon, <strong>real experience is the only thing that sells.</strong> Ours is this: a team that argues hard, ships at 2 AM, and builds something worth being proud of.</p>
+    </div>
+
+    <p style="font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--gold); margin-bottom:0.5rem; font-style:italic;">Happy International Women's Day.</p>
+    <p style="font-family:'DM Sans',sans-serif; font-size:0.9rem; color:rgba(250,245,235,0.6); margin-bottom:0.3rem;">— Pranav Chaturvedi, Lumberfi · Whitefield, Bengaluru · March 8</p>
+
+    <p style="font-family:'DM Mono',monospace; font-size:0.68rem; color:rgba(250,245,235,0.3); margin-top:1.5rem; margin-bottom:1rem; max-width:580px; margin-left:auto; margin-right:auto; line-height:1.7;">
+      📊 Stats on women in AI industry referenced from: 
+      <a href="https://www.weforum.org/reports/global-gender-gap-report-2024" target="_blank" style="color:rgba(212,160,23,0.6); text-decoration:underline;">weforum.org</a> · 
+      <a href="https://www.mckinsey.com/featured-insights/diversity-and-inclusion" target="_blank" style="color:rgba(212,160,23,0.6); text-decoration:underline;">mckinsey.com</a> · 
+      <a href="https://aiindex.stanford.edu/report/" target="_blank" style="color:rgba(212,160,23,0.6); text-decoration:underline;">Stanford AI Index 2024</a>. 
+      Lumberfi internal stats are illustrative of team composition at time of writing.
+    </p>
+
+    <div class="hashtags reveal">
+      <span class="hashtag">#WomensDay2025</span>
+      <span class="hashtag">#Lumberfi</span>
+      <span class="hashtag">#WomenInAI</span>
+      <span class="hashtag">#WomenInTech</span>
+      <span class="hashtag">#AIEthics</span>
+      <span class="hashtag">#StartupLife</span>
+      <span class="hashtag">#Bengaluru</span>
+      <span class="hashtag">#DiversityInTech</span>
+      <span class="hashtag">#KannagiMeetsCode</span>
+    </div>
+
+
+  </div>
+</section>
+
+<script>
+  // Read progress
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('readProgress').style.transform = `scaleX(${scrolled / total})`;
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(r => observer.observe(r));
+
+  // Progress bars animation
+  const barObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      document.querySelectorAll('.progress-fill').forEach((bar, i) => {
+        setTimeout(() => {
+          bar.style.transform = `scaleX(${getComputedStyle(bar).getPropertyValue('--w') || bar.style.getPropertyValue('--w')})`;
+          bar.classList.add('animated');
+        }, i * 200 + 300);
+      });
+    }
+  }, { threshold: 0.5 });
+  const pb = document.getElementById('progressBars');
+  if (pb) barObserver.observe(pb);
+
+  // Nav dots
+  const sections = ['s0','s1','s2','s3','s4','s5','s6'].map(id => document.getElementById(id));
+  const dots = document.querySelectorAll('.nav-dot');
+
+  window.addEventListener('scroll', () => {
+    let current = 0;
+    sections.forEach((s, i) => {
+      if (s && window.scrollY >= s.offsetTop - window.innerHeight / 2) current = i;
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      sections[i]?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
