@@ -3,1087 +3,778 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Women at Lumberfi — Where Kannagi Meets Code</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Can She Lead? — 8 March Editorial</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --saffron: #E8621A;
-    --deep-red: #B91C1C;
-    --gold: #D4A017;
-    --cream: #FAF5EB;
-    --bark: #2C1810;
-    --ash: #4A3728;
-    --sage: #6B7B5E;
-    --sky: #C8D8E8;
-    --midnight: #0F172A;
-    --ember: #FF6B35;
-    --silk: #F5E6D0;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--bark);
-    overflow-x: hidden;
-  }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    background: var(--midnight);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
-    padding: 4rem 2rem;
-  }
-
-  .hero-texture {
-    position: absolute;
-    inset: 0;
-    background-image: 
-      radial-gradient(ellipse 80% 50% at 20% 80%, rgba(232,98,26,0.18) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(212,160,23,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 60% at 50% 50%, rgba(185,28,28,0.08) 0%, transparent 70%);
-  }
-
-  .kolam {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='60' cy='60' r='50' fill='none' stroke='%23E8621A' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='35' fill='none' stroke='%23E8621A' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='20' fill='none' stroke='%23E8621A' stroke-width='1'/%3E%3Cline x1='10' y1='60' x2='110' y2='60' stroke='%23E8621A' stroke-width='0.5'/%3E%3Cline x1='60' y1='10' x2='60' y2='110' stroke='%23E8621A' stroke-width='0.5'/%3E%3Cline x1='24' y1='24' x2='96' y2='96' stroke='%23E8621A' stroke-width='0.5'/%3E%3Cline x1='96' y1='24' x2='24' y2='96' stroke='%23E8621A' stroke-width='0.5'/%3E%3C/svg%3E");
-    background-size: 120px 120px;
-  }
-
-  .hero-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--saffron);
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-    padding: 0 0.5rem;
-  }
-
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.2rem, 8vw, 6rem);
-    font-weight: 900;
-    color: var(--cream);
-    line-height: 1.05;
-    max-width: 900px;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.4s forwards;
-    padding: 0 0.5rem;
-  }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--saffron);
-  }
-
-  .hero-subtitle {
-    font-size: clamp(0.92rem, 2.5vw, 1.15rem);
-    color: rgba(250,245,235,0.65);
-    max-width: 580px;
-    margin-top: 1.5rem;
-    line-height: 1.7;
-    font-weight: 300;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.6s forwards;
-    padding: 0 0.5rem;
-  }
-
-  .hero-date {
-    margin-top: 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.8s forwards;
-    padding: 0 1rem;
-  }
-
-  .hero-date span {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--gold);
-    letter-spacing: 0.08em;
-  }
-
-  .hero-date .dot { color: rgba(250,245,235,0.3); }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    opacity: 0;
-    animation: fadeUp 1s 1.2s forwards;
-  }
-
-  .scroll-hint span {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    color: rgba(250,245,235,0.4);
-    text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-  }
-
-  .scroll-line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--saffron), transparent);
-    animation: scrollPulse 2s infinite;
-  }
-
-  /* SECTION WRAPPER */
-  .section {
-    padding: 6rem 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.28em;
-    color: var(--saffron);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  /* KANNAGI STORY */
-  .kannagi-section {
-    background: var(--midnight);
-    color: var(--cream);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .kannagi-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 6rem 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-  }
-
-  .kannagi-quote {
-    position: relative;
-  }
-
-  .big-quote {
-    font-family: 'Playfair Display', serif;
-    font-size: 10rem;
-    color: var(--saffron);
-    opacity: 0.15;
-    line-height: 0.7;
-    position: absolute;
-    top: -1.5rem;
-    left: -1.5rem;
-    pointer-events: none;
-  }
-
-  .kannagi-text {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
-    font-weight: 400;
-    font-style: italic;
-    line-height: 1.6;
-    color: var(--cream);
-    position: relative;
-    z-index: 1;
-  }
-
-  .kannagi-attribution {
-    margin-top: 1.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    text-transform: uppercase;
-  }
-
-  .kannagi-body {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: rgba(250,245,235,0.75);
-    font-weight: 300;
-  }
-
-  .kannagi-body strong {
-    color: var(--saffron);
-    font-weight: 600;
-  }
-
-  .kannagi-body p + p { margin-top: 1.2rem; }
-
-  .flame-divider {
-    text-align: center;
-    font-size: 2rem;
-    margin: 1.5rem 0;
-    opacity: 0.6;
-  }
-
-  /* 2AM SECTION */
-  .twam-section {
-    background: var(--silk);
-  }
-
-  .twam-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 6rem 2rem;
-  }
-
-  .twam-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 700;
-    color: var(--bark);
-    margin-bottom: 0.5rem;
-  }
-
-  .twam-title em { color: var(--saffron); font-style: italic; }
-
-  .twam-subtitle {
-    font-size: 1rem;
-    color: var(--ash);
-    margin-bottom: 3rem;
-    max-width: 600px;
-    line-height: 1.7;
-  }
-
-  .terminal {
-    background: #0D1117;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(15,23,42,0.3);
-    max-width: 680px;
-  }
-
-  .terminal-bar {
-    background: #1C2128;
-    padding: 0.75rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .dot-r { width: 12px; height: 12px; border-radius: 50%; background: #FF5F57; }
-  .dot-y { width: 12px; height: 12px; border-radius: 50%; background: #FFBD2E; }
-  .dot-g { width: 12px; height: 12px; border-radius: 50%; background: #28C840; }
-
-  .terminal-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: rgba(250,245,235,0.4);
-    margin-left: 0.5rem;
-  }
-
-  .terminal-body {
-    padding: 1.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.82rem;
-    line-height: 1.9;
-  }
-
-  .t-line { color: rgba(250,245,235,0.5); }
-  .t-prompt { color: #28C840; }
-  .t-cmd { color: #79C0FF; }
-  .t-output { color: rgba(250,245,235,0.85); }
-  .t-highlight { color: var(--saffron); font-weight: 500; }
-  .t-comment { color: #6E7681; }
-  .t-success { color: #3FB950; }
-
-  .twam-body-text {
-    margin-top: 2.5rem;
-    font-size: 1rem;
-    line-height: 1.85;
-    color: var(--ash);
-    max-width: 720px;
-  }
-
-  .twam-body-text strong { color: var(--bark); }
-
-  /* STATS */
-  .stats-section {
-    background: var(--saffron);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .stats-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-
-  .stats-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 6rem 2rem;
-    position: relative;
-  }
-
-  .stats-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 900;
-    color: var(--midnight);
-    margin-bottom: 3rem;
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .stat-card {
-    background: rgba(15,23,42,0.9);
-    border-radius: 12px;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    transition: transform 0.3s;
-  }
-
-  .stat-card:hover { transform: translateY(-4px); }
-
-  .stat-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--gold);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-label {
-    font-size: 0.82rem;
-    color: rgba(250,245,235,0.7);
-    letter-spacing: 0.05em;
-    line-height: 1.4;
-  }
-
-  .benefits-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  .benefit-tag {
-    background: rgba(15,23,42,0.8);
-    color: var(--cream);
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    font-size: 0.8rem;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.05em;
-    border: 1px solid rgba(212,160,23,0.3);
-  }
-
-  /* QUOTES */
-  .quotes-section {
-    background: var(--cream);
-  }
-
-  .quotes-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 6rem 2rem;
-  }
-
-  .quotes-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    color: var(--bark);
-    margin-bottom: 3rem;
-  }
-
-  .quotes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  .quote-card {
-    background: white;
-    border-radius: 16px;
-    padding: 2.5rem;
-    border-left: 4px solid var(--saffron);
-    box-shadow: 0 4px 24px rgba(44,24,16,0.08);
-    position: relative;
-    transition: box-shadow 0.3s, transform 0.3s;
-    cursor: default;
-  }
-
-  .quote-card:hover {
-    box-shadow: 0 12px 40px rgba(44,24,16,0.14);
-    transform: translateY(-3px);
-  }
-
-  .qmark {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
-    color: var(--saffron);
-    opacity: 0.2;
-    line-height: 1;
-    position: absolute;
-    top: 1.2rem;
-    right: 1.5rem;
-  }
-
-  .quote-text {
-    font-size: 0.98rem;
-    line-height: 1.8;
-    color: var(--ash);
-    font-style: italic;
-    margin-bottom: 1.5rem;
-  }
-
-  .quote-name {
-    font-weight: 600;
-    color: var(--bark);
-    font-size: 0.9rem;
-  }
-
-  .quote-role {
-    font-size: 0.78rem;
-    color: var(--saffron);
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.08em;
-    margin-top: 0.2rem;
-  }
-
-  /* AI SHAPES */
-  .ai-section {
-    background: var(--bark);
-    color: var(--cream);
-  }
-
-  .ai-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 6rem 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .ai-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-  }
-
-  .ai-title em { color: var(--gold); font-style: italic; }
-
-  .ai-body {
-    font-size: 0.98rem;
-    line-height: 1.85;
-    color: rgba(250,245,235,0.72);
-    font-weight: 300;
-  }
-
-  .ai-body p + p { margin-top: 1.2rem; }
-
-  .ai-body strong { color: var(--cream); font-weight: 600; }
-
-  .shape-diagram {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .shape-item {
-    background: rgba(250,245,235,0.06);
-    border: 1px solid rgba(250,245,235,0.1);
-    border-radius: 12px;
-    padding: 1.5rem;
-    transition: background 0.3s;
-  }
-
-  .shape-item:hover { background: rgba(250,245,235,0.1); }
-
-  .shape-letter {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--gold);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
-
-  .shape-name {
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .shape-desc {
-    font-size: 0.85rem;
-    color: rgba(250,245,235,0.55);
-    line-height: 1.6;
-  }
-
-  /* CLOSING */
-  .closing-section {
-    background: linear-gradient(135deg, var(--deep-red) 0%, var(--midnight) 60%);
-    color: var(--cream);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .closing-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 70% 70% at 80% 50%, rgba(232,98,26,0.2) 0%, transparent 60%);
-  }
-
-  .closing-inner {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 7rem 2rem;
-    text-align: center;
-    position: relative;
-  }
-
-  .closing-kannada {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-    font-weight: 400;
-  }
-
-  .closing-translation {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: rgba(250,245,235,0.45);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 3rem;
-  }
-
-  .closing-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    font-weight: 900;
-    line-height: 1.15;
-    margin-bottom: 2rem;
-  }
-
-  .closing-title em { color: var(--saffron); font-style: italic; }
-
-  .closing-body {
-    font-size: 1.05rem;
-    line-height: 1.85;
-    color: rgba(250,245,235,0.72);
-    font-weight: 300;
-    max-width: 600px;
-    margin: 0 auto 3rem;
-  }
-
-  .closing-body strong { color: var(--cream); }
-
-  .hashtags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    justify-content: center;
-    margin-top: 2rem;
-  }
-
-  .hashtag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: rgba(250,245,235,0.5);
-    letter-spacing: 0.05em;
-  }
-
-  /* PROGRESS BARS */
-  .progress-row {
-    margin-top: 2.5rem;
-  }
-
-  .progress-item {
-    margin-bottom: 1.2rem;
-  }
-
-  .progress-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: rgba(250,245,235,0.6);
-    margin-bottom: 0.4rem;
-    font-family: 'DM Mono', monospace;
-  }
-
-  .progress-bar {
-    height: 4px;
-    background: rgba(250,245,235,0.1);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(to right, var(--saffron), var(--gold));
-    border-radius: 4px;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .progress-fill.animated { transform: scaleX(1); }
-
-  /* DIVIDER */
-  .ornament-divider {
-    text-align: center;
-    font-size: 1.5rem;
-    color: var(--saffron);
-    opacity: 0.4;
-    margin: 1.5rem 0;
-    letter-spacing: 1rem;
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    .kannagi-inner, .ai-inner {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-    .stats-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .quotes-grid {
-      grid-template-columns: 1fr;
-    }
-    .nav-dots { display: none; }
-    .hero { padding: 5rem 1.25rem 4rem; min-height: 100svh; }
-    .hero-tag { font-size: 0.62rem; letter-spacing: 0.08em; }
-    .hero-date .dot { display: none; }
-    .hero-date { flex-direction: column; gap: 0.3rem; }
-    .terminal { font-size: 0.72rem; }
-    .terminal-body { padding: 1rem; font-size: 0.72rem; }
-    .big-quote { font-size: 6rem; }
-    .kannagi-text { font-size: 1.3rem; }
-  }
-
-  /* NAV DOTS */
-  .nav-dots {
-    position: fixed;
-    right: 1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    z-index: 100;
-  }
-
-  .nav-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(232,98,26,0.3);
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
-  }
-
-  .nav-dot.active {
-    background: var(--saffron);
-    transform: scale(1.4);
-  }
-
-  /* LUMBERFI BRAND LINE */
-  .brand-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(to right, var(--saffron), var(--gold), var(--deep-red));
-    z-index: 200;
-  }
-
-  .read-progress {
-    height: 100%;
-    background: rgba(250,245,235,0.3);
-    transform-origin: left;
-    transform: scaleX(0);
-    transition: transform 0.1s;
-  }
+:root {
+  --ink: #181010;
+  --paper: #f6f0e8;
+  --crimson: #8c1c1c;
+  --gold: #b8862a;
+  --ash: #6b5c5c;
+  --pale: #ede4d6;
+  --blue: #1e3a5f;
+  --w: 680px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Lora', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+/* GRAIN */
+body::after {
+  content:''; position:fixed; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:999;
+}
+
+/* PROGRESS BAR */
+#prog { position:fixed; top:0; left:0; height:3px; background:var(--crimson); z-index:1000; transition:width .1s; }
+
+/* TICKER */
+.ticker { background:var(--crimson); overflow:hidden; padding:5px 0; }
+.ticker-inner {
+  display:inline-block; white-space:nowrap;
+  font-family:'DM Mono',monospace; font-size:.6rem; letter-spacing:.18em;
+  color:#f6f0e8; text-transform:uppercase;
+  animation: tick 40s linear infinite;
+}
+@keyframes tick { from{transform:translateX(100vw)} to{transform:translateX(-100%)} }
+
+/* MASTHEAD */
+.masthead {
+  padding: 18px 40px 14px;
+  display:grid; grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  border-bottom: 2px solid var(--ink);
+}
+.mast-side { font-family:'DM Mono',monospace; font-size:.55rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ash); }
+.mast-side:last-child { text-align:right; }
+.mast-title { text-align:center; font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:900; letter-spacing:.08em; }
+
+/* LAYOUT — single column, full width */
+.layout {
+  max-width:780px;
+  margin:0 auto;
+}
+.article { padding:50px 48px 80px 48px; }
+
+/* HERO */
+.eyebrow {
+  font-family:'DM Mono',monospace; font-size:.6rem; letter-spacing:.3em;
+  text-transform:uppercase; color:var(--crimson); margin-bottom:14px;
+}
+h1 {
+  font-family:'Playfair Display',serif; font-size:clamp(3.2rem,7vw,5.8rem);
+  font-weight:900; line-height:.93; letter-spacing:-.02em;
+  margin-bottom:10px;
+}
+h1 em { color:var(--crimson); font-style:italic; }
+.deck {
+  font-family:'Lora',serif; font-style:italic; font-size:1.1rem;
+  color:var(--ash); line-height:1.5; margin-bottom:28px;
+}
+.byline {
+  font-family:'DM Mono',monospace; font-size:.55rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--ash); margin-bottom:36px;
+  padding-bottom:24px; border-bottom:1px solid var(--pale);
+}
+
+/* SECTION HEADS */
+.ch {
+  font-family:'DM Mono',monospace; font-size:.55rem; letter-spacing:.25em;
+  text-transform:uppercase; color:var(--crimson); margin-top:44px; margin-bottom:4px;
+}
+h2 {
+  font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:900;
+  line-height:1.15; margin-bottom:4px; color:var(--ink);
+}
+.sh {
+  font-family:'Lora',serif; font-style:italic; font-size:.9rem;
+  color:var(--ash); margin-bottom:18px; padding-bottom:14px;
+  border-bottom:1px solid var(--pale);
+}
+
+/* BODY */
+p { margin-bottom:18px; }
+p strong { color:var(--crimson); font-weight:600; }
+p em { font-style:italic; }
+
+/* PULL QUOTE — no left border, flush */
+.pq {
+  padding:16px 20px; margin:28px 0;
+  background:var(--pale);
+  border-top:2px solid var(--crimson);
+  border-bottom:1px solid #c8b8a8;
+}
+.pq q {
+  font-family:'Playfair Display',serif; font-style:italic;
+  font-size:1.2rem; line-height:1.4; display:block; margin-bottom:6px;
+  color:var(--ink); quotes:none;
+}
+.pq cite {
+  font-family:'DM Mono',monospace; font-size:.52rem; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--gold);
+}
+
+/* PUNCHLINE — standalone typographic moment */
+.punch {
+  margin:32px -24px; padding:22px 24px;
+  background:var(--ink); color:var(--paper);
+  position:relative;
+}
+.punch::before {
+  content:'❝'; position:absolute; top:-18px; left:16px;
+  font-size:3rem; color:var(--crimson); line-height:1;
+}
+.punch p {
+  font-family:'Playfair Display',serif; font-style:italic;
+  font-size:1.15rem; line-height:1.5; margin:0;
+}
+.punch small {
+  display:block; margin-top:10px;
+  font-family:'DM Mono',monospace; font-size:.5rem;
+  letter-spacing:.15em; color:var(--gold); text-transform:uppercase;
+}
+
+/* STATS — inline strip */
+.stats {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px; background:var(--ash); border:1px solid var(--ash);
+  margin:28px 0;
+}
+.stat { background:var(--paper); padding:14px 10px; text-align:center; }
+.stat b { display:block; font-family:'Playfair Display',serif; font-size:1.9rem; font-weight:900; color:var(--crimson); line-height:1; }
+.stat small { font-family:'DM Mono',monospace; font-size:.48rem; letter-spacing:.08em; color:var(--ash); text-transform:uppercase; margin-top:3px; display:block; }
+
+/* FEMINISM BOX */
+.fbox {
+  border:2px solid var(--blue); padding:20px 20px 16px;
+  margin:32px 0; position:relative; background:#f0f4f8;
+}
+.fbox-tag {
+  position:absolute; top:-10px; left:16px;
+  background:var(--blue); color:#fff;
+  font-family:'DM Mono',monospace; font-size:.52rem;
+  letter-spacing:.15em; text-transform:uppercase; padding:3px 9px;
+}
+.fbox h3 {
+  font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700;
+  color:var(--blue); margin-bottom:10px;
+}
+.fbox p { color:#192b40; margin-bottom:10px; }
+.fbox p:last-child { margin:0; }
+
+/* CLOSING TILE */
+.closing-tile {
+  margin-top:48px;
+  background: linear-gradient(135deg, var(--ink) 0%, #2a1010 100%);
+  border:1px solid #3a2020;
+  position:relative; overflow:hidden;
+}
+.closing-tile::before {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(140,28,28,.18) 0%, transparent 70%);
+  pointer-events:none;
+}
+.closing-tile-inner {
+  padding:44px 48px 36px;
+  text-align:center; position:relative; z-index:1;
+}
+.closing-ornament {
+  font-size:2rem; color:var(--gold); margin-bottom:16px;
+  display:block; opacity:.7;
+}
+.closing-quote {
+  font-family:'Playfair Display',serif; font-style:italic;
+  font-size:clamp(1.5rem,3.5vw,2.2rem); font-weight:700;
+  line-height:1.35; color:#f6f0e8;
+  max-width:620px; margin:0 auto 16px;
+  letter-spacing:-.01em;
+}
+.closing-attr {
+  font-family:'DM Mono',monospace; font-size:.55rem;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:20px;
+}
+.closing-attr em { font-style:italic; text-transform:none; letter-spacing:0; color:#c8a860; }
+.closing-line {
+  font-family:'Lora',serif; font-style:italic; font-size:1rem;
+  color:#c8b8a8; margin-bottom:20px; padding-bottom:20px;
+  border-bottom:1px solid #3a2a2a;
+}
+.closing-sig {
+  font-family:'DM Mono',monospace; font-size:.55rem;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:#6b5c5c; line-height:1.8;
+}
+
+/* SIDEBAR — Portrait Gallery */
+.sb-head {
+  font-family:'DM Mono',monospace; font-size:.52rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--paper); background:var(--ink);
+  padding:6px 10px; margin-bottom:0;
+}
+.portrait-gallery { display:flex; flex-direction:column; gap:0; }
+.portrait-card {
+  position:relative; overflow:hidden; cursor:default;
+  border-bottom:1px solid #c8b8a8;
+}
+.portrait-card:last-child { border-bottom:none; }
+.portrait-img {
+  width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top center;
+  display:block;
+  filter:sepia(30%) contrast(1.05);
+  transition:filter .4s, transform .4s;
+}
+.portrait-card:hover .portrait-img {
+  filter:sepia(0%) contrast(1.1);
+  transform:scale(1.03);
+}
+.portrait-overlay {
+  position:absolute; bottom:0; left:0; right:0;
+  background:linear-gradient(transparent 0%, rgba(24,16,16,.88) 60%);
+  padding:28px 12px 10px;
+}
+.portrait-name {
+  font-family:'Playfair Display',serif; font-weight:700; font-size:.95rem;
+  color:#f6f0e8; line-height:1.2; display:block;
+}
+.portrait-era {
+  font-family:'DM Mono',monospace; font-size:.46rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--gold); margin-top:2px; display:block;
+}
+.portrait-fact {
+  font-family:'Lora',serif; font-style:italic; font-size:.72rem;
+  color:#d8c8b8; line-height:1.4; margin-top:4px; display:block;
+  opacity:0; transform:translateY(6px);
+  transition:opacity .3s, transform .3s;
+}
+.portrait-card:hover .portrait-fact {
+  opacity:1; transform:translateY(0);
+}
+
+/* FOOTER */
+footer {
+  background:var(--ink); color:var(--paper);
+  text-align:center; padding:28px 40px;
+  border-top:3px double var(--crimson);
+}
+footer .ft { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; }
+footer .fs { font-family:'DM Mono',monospace; font-size:.5rem; letter-spacing:.2em; color:var(--gold); text-transform:uppercase; margin-top:6px; }
+
+/* VOICES — LumberFi */
+.voices-section {
+  margin:32px 0; border:1px solid #b8c8d8;
+  background:#f0f5f9;
+}
+.voices-head {
+  background:var(--blue); padding:10px 18px;
+}
+.voices-label {
+  font-family:'DM Mono',monospace; font-size:.6rem; letter-spacing:.22em;
+  text-transform:uppercase; color:#fff;
+}
+.voices-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:1px; background:#b8c8d8;
+}
+.voice-card {
+  background:#f0f5f9; padding:18px 16px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  gap:12px;
+}
+.voice-quote {
+  font-family:'Lora',serif; font-style:italic; font-size:.9rem;
+  line-height:1.6; color:#192b40; flex:1;
+}
+.voice-quote strong { color:var(--blue); font-style:normal; }
+.voice-person { margin-top:4px; }
+.voice-name {
+  font-family:'Playfair Display',serif; font-weight:700; font-size:.95rem;
+  color:var(--blue); display:block;
+}
+.voice-title {
+  font-family:'DM Mono',monospace; font-size:.5rem; letter-spacing:.12em;
+  text-transform:uppercase; color:#5a7a9a;
+}
+.voices-foot {
+  padding:12px 18px; border-top:1px solid #b8c8d8;
+  font-family:'Playfair Display',serif; font-style:italic;
+  font-size:.88rem; color:var(--blue); line-height:1.5;
+}
+
+/* RESPONSIVE */
+@media(max-width:740px){
+  .article{padding:30px 20px 60px;}
+  .masthead{padding:12px 16px;}
+  .punch{margin:28px -12px;}
+  .stats{grid-template-columns:1fr 1fr;}
+  h1{font-size:2.8rem;}
+  .voices-grid{grid-template-columns:1fr;}
+  .phil-grid{grid-template-columns:1fr;}
+  .goldin-tiles{grid-template-columns:1fr;}
+}
+
+/* PHILOSOPHER TILES */
+.phil-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:12px; margin:28px 0;
+}
+.phil-tile {
+  border:1px solid #c8b8a8; background:var(--paper);
+  overflow:hidden; display:flex; flex-direction:column;
+  transition:box-shadow .2s;
+}
+.phil-tile:hover { box-shadow:0 4px 20px rgba(140,28,28,.12); }
+.phil-img-wrap {
+  height:140px; overflow:hidden; background:var(--ink);
+}
+.phil-img {
+  width:100%; height:100%; object-fit:cover; object-position:top center;
+  filter:sepia(40%) contrast(1.05);
+  transition:filter .35s, transform .35s;
+}
+.phil-tile:hover .phil-img { filter:sepia(0%) contrast(1.1); transform:scale(1.04); }
+.phil-body { padding:14px 14px 16px; flex:1; display:flex; flex-direction:column; gap:6px; }
+.phil-name {
+  font-family:'Playfair Display',serif; font-weight:900; font-size:1rem;
+  color:var(--ink); line-height:1.1;
+}
+.phil-meta {
+  font-family:'DM Mono',monospace; font-size:.5rem; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--gold);
+}
+.phil-book {
+  font-family:'Lora',serif; font-size:.78rem; color:var(--ash); line-height:1.3;
+}
+.phil-quote {
+  font-family:'Playfair Display',serif; font-style:italic; font-size:.88rem;
+  line-height:1.45; color:var(--crimson); border-top:1px solid var(--pale);
+  padding-top:8px; margin-top:2px;
+}
+.phil-tag {
+  font-family:'DM Mono',monospace; font-size:.52rem; line-height:1.5;
+  color:var(--ash); background:var(--pale); padding:6px 8px;
+  margin-top:auto;
+}
+.phil-tag strong { color:var(--crimson); }
+
+/* DROP CAPS */
+.dropcap {
+  float:left; font-family:'Playfair Display',serif; font-weight:900;
+  font-size:4.2rem; line-height:.78; margin-right:6px; margin-top:4px;
+  color:var(--crimson);
+}
+
+/* CLAUDIA GOLDIN BOX — light */
+.goldin-box {
+  background:var(--pale); border:1px solid #c8b8a8;
+  border-top:3px solid var(--gold);
+  margin:32px 0; overflow:hidden;
+}
+.goldin-header {
+  padding:18px 22px 14px; border-bottom:1px solid #c8b8a8;
+}
+.goldin-label {
+  font-family:'DM Mono',monospace; font-size:.52rem; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--gold); margin-bottom:5px;
+}
+.goldin-name {
+  font-family:'Playfair Display',serif; font-size:1.15rem; font-weight:900;
+  color:var(--ink); line-height:1.2; margin-bottom:5px;
+}
+.goldin-sub {
+  font-family:'Lora',serif; font-style:italic; font-size:.82rem;
+  color:var(--ash); line-height:1.5;
+}
+.goldin-sub strong { color:var(--ink); font-style:normal; }
+.goldin-body { padding:0 22px; }
+.goldin-entry { padding:16px 0; border-bottom:1px solid #d8c8b8; }
+.goldin-entry:last-child { border-bottom:none; }
+.goldin-entry-head {
+  font-family:'DM Mono',monospace; font-size:.58rem; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--gold); margin-bottom:8px; font-weight:700;
+}
+.goldin-entry p {
+  font-family:'Lora',serif; font-size:.9rem; line-height:1.75;
+  color:var(--ink); margin:0;
+}
+.goldin-entry p strong { color:var(--crimson); }
+.goldin-footer {
+  padding:14px 22px;
+  font-family:'Playfair Display',serif; font-style:italic;
+  font-size:.95rem; color:var(--crimson); line-height:1.5;
+  border-top:1px solid #c8b8a8; background:#ede4d6;
+}
+.goldin-cite {
+  font-family:'DM Mono',monospace; font-style:normal; font-size:.48rem;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--ash);
+  display:block; margin-top:3px;
+}
+
+/* TYPOGRAPHIC HIGHLIGHTS — big display words */
+.word-display {
+  display:block;
+  font-family:'Playfair Display',serif; font-weight:900;
+  font-size:clamp(1.8rem,4vw,2.6rem);
+  line-height:1.05; letter-spacing:-.02em;
+  color:var(--crimson); margin:.4em 0 .1em;
+}
+.word-display.secondary { color:var(--ink); }
+.word-display.gold { color:var(--gold); }
+
+/* BOOK TITLE in text — amber/gold */
+.booktitle {
+  font-style:italic; color:var(--gold); font-weight:600;
+}
+
+/* INLINE QUOTE — bold, slightly larger */
+.iquote {
+  font-family:'Playfair Display',serif; font-style:italic;
+  font-weight:700; font-size:1.05rem; color:var(--ink);
+}
+
+/* EQUALITY LINE — display callout */
+.eq-line {
+  font-family:'Playfair Display',serif; font-size:clamp(1.1rem,2.5vw,1.4rem);
+  font-weight:700; font-style:italic; line-height:1.4;
+  color:var(--ink); border-top:2px solid var(--crimson);
+  border-bottom:2px solid var(--crimson);
+  padding:14px 0; margin:28px 0; text-align:center;
+}
+.eq-line em { color:var(--crimson); font-style:normal; }
+
+/* VOICES BRIDGE */
+.voices-bridge {
+  background:var(--pale); border-left:3px solid var(--gold);
+  padding:18px 22px; margin:28px 0 4px;
+}
+.voices-bridge-label {
+  font-family:'DM Mono',monospace; font-size:.52rem;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;
+}
+.voices-bridge-text {
+  font-family:'Lora',serif; font-size:.92rem; line-height:1.75;
+  color:var(--ink); margin:0;
+}
+
+/* DUAL CLOSING TILE — Bentinck + Roy */
+.dual-tile {
+  margin-top:44px;
+  border:1px solid #c8b8a8; border-top:3px solid var(--crimson);
+  background:var(--pale);
+}
+.dual-tile-head {
+  padding:16px 24px 12px;
+  border-bottom:1px solid #d8c8b8;
+}
+.dual-tile-label {
+  display:block; font-family:'Playfair Display',serif;
+  font-weight:900; font-size:1.05rem; color:var(--ink); margin-bottom:3px;
+}
+.dual-tile-sub {
+  display:block; font-family:'DM Mono',monospace; font-size:.52rem;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--ash);
+}
+.dual-tile-quotes {
+  display:grid; grid-template-columns:1fr 1px 1fr;
+  gap:0;
+}
+.dual-quote {
+  padding:24px 28px;
+}
+.dual-ornament {
+  font-family:'Playfair Display',serif; font-size:3.5rem;
+  line-height:.6; color:var(--crimson); opacity:.35;
+  margin-bottom:8px; display:block;
+}
+.dual-quote blockquote {
+  font-family:'Playfair Display',serif; font-style:italic;
+  font-size:1.05rem; line-height:1.6; color:var(--ink);
+  margin:0 0 16px; padding:0;
+}
+.dual-attr {
+  font-family:'DM Mono',monospace; font-size:.55rem;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--crimson); line-height:1.6;
+}
+.dual-attr span {
+  display:block; color:var(--ash); text-transform:none;
+  letter-spacing:.04em; font-size:.5rem; margin-top:2px;
+}
+.dual-divider { background:#d8c8b8; }
+.dual-tile-foot {
+  padding:14px 24px;
+  font-family:'Lora',serif; font-style:italic; font-size:.88rem;
+  color:var(--ash); border-top:1px solid #d8c8b8; text-align:center;
+}
+
+/* SCROLL REVEAL */
+.reveal { opacity:0; transform:translateY(16px); transition:opacity .5s, transform .5s; }
+.reveal.in { opacity:1; transform:none; }
 </style>
 </head>
 <body>
 
-<div class="brand-bar">
-  <div class="read-progress" id="readProgress"></div>
+<div id="prog"></div>
+
+<div class="ticker">
+  <span class="ticker-inner">★ 8 MARCH 1917 — Women workers march in Petrograd. A Tsar falls. ★ 1789 — France promises Liberté. Women get the guillotine. 1944 — They finally get the vote. ★ "Feminism is the radical notion that women are people." — Marie Shear, 1986 ★ Night Witches: 30,000 bombing missions. Zero parachutes. ★ 309 confirmed kills — Lyudmila Pavlichenko ★ LumberFi: where fintech meets the last unreformed frontier ★
+  </span>
 </div>
 
-<nav class="nav-dots" id="navDots">
-  <div class="nav-dot active" data-section="0" title="Intro"></div>
-  <div class="nav-dot" data-section="1" title="Kannagi"></div>
-  <div class="nav-dot" data-section="2" title="2 AM"></div>
-  <div class="nav-dot" data-section="3" title="By the Numbers"></div>
-  <div class="nav-dot" data-section="4" title="Voices"></div>
-  <div class="nav-dot" data-section="5" title="AI & Growth"></div>
-  <div class="nav-dot" data-section="6" title="Close"></div>
-</nav>
+<div class="masthead">
+  <div class="mast-side">8 March 2026 · Vol. III</div>
+  <div class="mast-title">THE LONG MARCH</div>
+  <div class="mast-side">International Women's Day Edition</div>
+</div>
 
-<!-- HERO -->
-<section class="hero" id="s0">
-  <div class="hero-texture"></div>
-  <div class="kolam"></div>
-  <div style="position:relative; z-index:1;">
-    <p class="hero-tag">International Women's Day 2026 · Lumberfi · Whitefield, Bengaluru</p>
-    <h1 class="hero-title">
-      Where <em>Kannagi</em><br>Meets <em>Code</em>
-    </h1>
-    <p class="hero-subtitle">
-      Two thousand years ago, a woman burned a city for justice. Today, her daughters are building AI — and they're doing it without asking for permission.
-    </p>
-    <div class="hero-date">
-      <span>8 March 2026</span>
-      <span class="dot">◆</span>
-      <span>Lumberfi · Whitefield, Bengaluru</span>
-      <span class="dot">◆</span>
-      <span>deivettu · dhanyavadagalu</span>
-    </div>
+<div class="layout">
+
+<!-- ═══ ARTICLE ═══ -->
+<article class="article">
+
+  <div class="eyebrow">International Women's Day — A Living Editorial</div>
+  <h1>Can the Invisible<br><em>Lead?</em></h1>
+  <div class="deck">They started revolutions, decoded DNA, and flew without parachutes. History filed them under someone else's name. The long arc of 8 March — and the word the world has always been afraid to say.</div>
+  <div class="byline">Editorial · 8 March 2026</div>
+
+  <!-- ─ I. THE SPARK ─ -->
+  <div class="ch reveal">Chapter I</div>
+  <h2 class="reveal">8 March 1917: The Day That Should Have Changed Everything</h2>
+  <div class="sh reveal">A Tsar fell. A revolution began. The women who started it became a paragraph.</div>
+
+  <p class="reveal">On a freezing morning in <strong>Petrograd</strong>, women textile workers walked off factory floors. No pamphlets. No party leadership. Just a single demand — <em>bread, peace, dignity</em>. Within four days, soldiers refused orders to fire on them. Within a week, the three-hundred-year-old <strong>Romanov</strong> dynasty was finished. Historians noted the detail awkwardly: the <strong>Russian Revolution</strong> began with women. The date, <strong>8 March</strong>, would become <strong>International Women's Day</strong>. The women who started it would become a paragraph.</p>
+
+  <p class="reveal">That gap — between the action and the attribution — is the whole story.</p>
+
+  <!-- ─ II. THE BROKEN PROMISE ─ -->
+  <div class="ch reveal">Chapter II</div>
+  <h2 class="reveal">The French Revolution's Broken Promise: Liberté for Whom?</h2>
+  <div class="sh reveal">1789 to 1944 — 155 years between proclaiming universal rights and delivering them to half the population.</div>
+
+  <p class="reveal">A century before <strong>Petrograd</strong>, <strong>France</strong> attempted the most ambitious political experiment in modern history — dismantling a monarchy, executing a king, declaring liberty a universal right. Women marched in those streets. The <em>Women's March on Versailles</em> in <strong>1789</strong> was among the revolution's defining moments. Then the republic settled in and decided that "universal" required further definition.</p>
+
+  <p class="reveal"><strong>Olympe de Gouges</strong> held that definition to account. In <strong>1791</strong>, she published her <em>Declaration of the Rights of Woman</em> — a logical challenge, not a polemic: if the revolution's liberty is universal, include women. The republic's reply was swift. In <strong>1793</strong>, it <span style="color:var(--crimson);font-weight:700">guillotined</span> her, banned women's political clubs, and returned equality to its original, narrower meaning. <strong>France</strong> finally granted women the vote in <strong>1944</strong>. That is one hundred and fifty-five years. The arithmetic is the argument.</p>
+
+  <div class="punch reveal">
+    <p>"The French Revolution gave women the guillotine. It took 155 years to give them the ballot."</p>
+    <small>— The distance between a proclaimed ideal and a delivered right</small>
   </div>
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
+
+  <!-- ─ III. PHILOSOPHERS + FEMINISM ─ -->
+  <div class="ch reveal">Chapter III</div>
+  <h2 class="reveal">From Property to Personhood: The Words That Built the Movement</h2>
+  <div class="sh reveal">1791–1986: Four thinkers. Two centuries. The vocabulary that moved women from propertied objects to suffragists — and gave the system a name it couldn't deny.</div>
+
+  <p class="reveal"><span class="dropcap">O</span><strong>lympe de Gouges</strong>'s death was not the end of her argument — it was its proof. The republic that <span style="color:var(--crimson);font-weight:700">guillotined</span> her in <strong>1793</strong> had, by silencing her, confirmed everything she said: that the <em>Declaration of the Rights of Woman and of the Female Citizen</em> threatened power precisely because it was logical. The word that filled the gap she left behind was</p>
+  <div class="word-display reveal">Feminism</div>
+  <p class="reveal">— the demand that equality be practised, not merely proclaimed.</p>
+
+  <p class="reveal"><span class="dropcap">M</span><strong>ary Wollstonecraft</strong> had already built its philosophical foundation. In <strong>1792</strong>, <span class="booktitle">A Vindication of the Rights of Woman</span> made a claim so precise it still unsettles: capability is shaped by education and opportunity, not biology. <span class="iquote">"I do not wish women to have power over men; but over themselves."</span> Not a petition. A logical proof. It became the founding text of the movement — and remains its clearest statement.</p>
+
+  <p class="reveal"><span class="dropcap">S</span><strong>imone de Beauvoir</strong> in <strong>1949</strong> moved the argument from rights to reality. Her <span class="booktitle">The Second Sex</span> did not ask for equality — it dissected why it was absent. <span class="iquote">"One is not born, but rather becomes, a woman."</span> Gender is not nature. It is a performance rehearsed by culture, enforced by expectation. What society constructs, society can dismantle.</p>
+
+  <p class="reveal"><span class="dropcap">K</span><strong>ate Millett</strong> in <span class="booktitle">Sexual Politics</span> (<strong>1970</strong>) named the structure de Beauvoir had described:</p>
+  <div class="word-display reveal">Patriarchy</div>
+  <p class="reveal">— from the Greek <em>patriarkhēs</em>, rule of the father — a political institution, not a family arrangement. The fog finally had a shape you could argue against.</p>
+
+  <div class="eq-line reveal">To say you believe in equality but not <em>feminism</em><br>is a grammatical error. They are synonyms.</div>
+
+  <p class="reveal">Those who resist the word usually have no argument with the definition. They have an argument with who is being centred by it.</p>
+
+  <div class="punch reveal">
+    <p>"You may call it equality if the word frightens you. The content does not change."</p>
+    <small>— On feminism, patriarchy, and the discomfort of precise language</small>
   </div>
-</section>
 
-<!-- KANNAGI -->
-<section class="kannagi-section" id="s1">
-  <div class="kannagi-inner">
-    <div class="kannagi-quote reveal">
-      <div class="big-quote">"</div>
-      <p class="kannagi-text">
-        "I am not a woman who weeps in silence. I am fire. And fire does not ask permission."
-      </p>
-      <p class="kannagi-attribution">— Kannagi, Cilappatikāram · c. 2nd century CE</p>
-    </div>
-    <div class="kannagi-body reveal">
-      <p>The Cilappatikāram — one of Tamil literature's greatest epics — tells us of <strong>Kannagi</strong>, a woman wronged by a king's court. She did not petition. She did not compromise. She tore off her ankle-bracelet, struck the ground, and set Madurai ablaze with righteous truth.</p>
+  <!-- ─ IV. WWII + WAR ─ -->
+  <div class="ch reveal">Chapter IV</div>
+  <h2 class="reveal">The Night Witches and Worse: When Women Settled the Capability Debate</h2>
+  <div class="sh reveal">From the Eastern Front to the Mekong Delta to New Delhi — every war that needed them found them ready. The world kept being surprised.</div>
 
-      <div class="flame-divider">🔥</div>
+  <p class="reveal">In the <strong>Soviet Union</strong> during <strong>World War II</strong>, nearly <strong>800,000 women</strong> served in active combat. One aviation regiment, the <strong>588th Night Bomber</strong>, cut their engines near targets and glided silently through darkness. The Germans called them <em>Nachthexen</em> — the <strong>Night Witches</strong> — in terror, not contempt. The data followed:</p>
 
-      <p>The king had the power. The court had the process. But <strong>Kannagi had the facts</strong> — and the courage to present them without apology.</p>
-
-      <p>Two thousand years later, we sat in a play at <strong>Whitefield</strong> and watched her story unfold. Walking back, we realized: <strong>every woman at Lumberfi carries a piece of that fire.</strong></p>
-
-      <p>Not the destruction. The <em>clarity</em>. The refusal to let bias masquerade as process. The insistence that what is right matters more than what is comfortable.</p>
-
-      <p>The question this Women's Day is not "are women good at tech?" — that's been answered. The question is: <strong>will AI inherit Kannagi's courage, or the king's blind court?</strong></p>
-    </div>
+  <div class="stats reveal">
+    <div class="stat"><b>800K</b><small>Soviet women in combat, WWII</small></div>
+    <div class="stat"><b>30,000+</b><small>Night Witches bombing missions</small></div>
+    <div class="stat"><b>309</b><small>Pavlichenko's confirmed kills</small></div>
   </div>
-</section>
 
-<!-- 2 AM SECTION -->
-<section class="twam-section" id="s2">
-  <div class="twam-inner">
-    <p class="section-label reveal">The Lumberfi Story</p>
-    <h2 class="twam-title reveal">It's <em>2 AM</em> in Bengaluru.<br>The client can't wait.</h2>
-    <p class="twam-subtitle reveal">At Lumberfi, we build AI-powered systems for the lumber industry — materials sourcing, estimation, project management. Our clients are contractors, builders, project managers. They don't work 9-to-5. Neither do we.</p>
+  <p class="reveal"><span class="dropcap">L</span><strong>yudmila Pavlichenko</strong> — sniper, <strong>Battle of Odessa</strong>, <strong>309</strong> confirmed kills — became the most lethal female combatant in recorded history, and among the deadliest of any gender in the war. When the <strong>American</strong> press, during her <strong>1942</strong> US tour, asked about her <span style="color:#c0392b;font-weight:700;font-size:1.05rem">lipstick</span> rather than her record, she replied without pause: <span class="iquote">"Gentlemen, I am 25 years old and I have killed 309 fascist occupants. Don't you think you have been hiding behind my back for too long?"</span> The room went quiet. More than <strong>90</strong> Soviet women received the title <strong>Hero of the Soviet Union</strong>.</p>
 
-    <div class="terminal reveal">
-      <div class="terminal-bar">
-        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
-        <span class="terminal-title">lumberfi-prod · incident-response · 02:14 IST</span>
-      </div>
-      <div class="terminal-body">
-        <div class="t-line"><span class="t-comment"># Client estimate engine down. Deadline: 6 AM EST.</span></div>
-        <br>
-        <div class="t-line"><span class="t-prompt">niharika@lumberfi</span><span style="color:#fff">:</span><span class="t-cmd">~$ ./run-qa-checks.sh --env prod</span></div>
-        <div class="t-line"><span class="t-output">  ▸ QA cleared by: </span><span class="t-highlight">Niharika (QA) ✓</span></div>
-        <div class="t-line"><span class="t-output">  ▸ Niharika ships product to: </span><span class="t-highlight">Production ✓</span></div>
-        <div class="t-line"><span class="t-output">  ▸ Dev review: </span><span class="t-highlight">Ayushi (Dev Lead) ✓</span></div>
-        <div class="t-line"><span class="t-output">  ▸ Product sign: </span><span class="t-highlight">Bhuwaneshwari (AI Product Lead) ✓</span></div>
-        <div class="t-line"><span class="t-output">  ▸ Research flag cleared: </span><span class="t-highlight">Anusha (PMR) ✓</span></div>
-        <br>
-        <div class="t-line"><span class="t-success">✓ Deployed. Client estimate engine: LIVE at 03:41 IST</span></div>
-        <div class="t-line"><span class="t-comment"># Client woke up to a working product. No one asked who stayed latest.</span></div>
-      </div>
-    </div>
+  <p class="reveal"><span class="dropcap" style="color:var(--gold)">L</span><strong>ong-Haired Army</strong> — the name <strong>Ho Chi Minh</strong> gave the women fighters of the <strong>Vietnamese</strong> resistance — made up an estimated <strong>40%</strong> of <strong>Viet Cong</strong> guerrilla forces. They built tunnel networks that baffled <strong>US</strong> military engineers, transported weapons across jungle terrain, treated wounded fighters, and held rifles in direct combat. They were not auxiliaries. They were the infrastructure of the resistance. History describes them in a sentence. They deserve a chapter.</p>
 
-    <div class="twam-body-text reveal">
-      <p>That's not a hypothetical. That's a Tuesday at Lumberfi.</p>
-      <p>The women on our Dev, QA, and Product teams don't choose this work because it's easy. They choose it because <strong>the client is the mission</strong>. Not gender. Not hierarchy. Not who stayed latest. Merit, and the will to serve.</p>
-      <p>Breaking prejudice isn't a slogan here — it's what happens when the alarm goes off at 2 AM and <strong>the best engineer on call happens to be a woman</strong>. And she delivers.</p>
-    </div>
+  <p class="reveal"><span class="dropcap">I</span><strong>ndira Gandhi</strong> — <strong>Prime Minister of India</strong>, <strong>1971</strong> — orchestrated the twelve-day war that broke <strong>Pakistan</strong> in two and created <strong>Bangladesh</strong>: one of the most decisive military-diplomatic campaigns of the <strong>20th century</strong>. <strong>Henry Kissinger</strong> called her a witch in classified <strong>CIA</strong> cables — the word used was <em>chudail</em>. <strong>Nixon</strong> called her worse. She won the war anyway. <strong>93,000</strong> Pakistani soldiers surrendered — the largest military capitulation since <strong>World War II</strong>. When the world's most powerful men reached for an insult, they reached for her gender. She reached for her generals. She won.</p>
+
+  <div class="punch reveal">
+    <p>"When the question is survival, no one asks whether the hand on the rifle — or the red phone — is male or female."</p>
+    <small>— The Eastern Front to New Delhi. The same answer, every time.</small>
   </div>
-</section>
 
-<!-- STATS -->
-<section class="stats-section" id="s3">
-  <div class="stats-inner">
-    <p class="section-label" style="color: rgba(15,23,42,0.6);">By the numbers</p>
-    <h2 class="stats-title reveal">Not Diversity Theater.<br>Actual Numbers.</h2>
-    <div class="stats-grid reveal">
-      <div class="stat-card">
-        <div class="stat-number">40<span style="font-size:1.8rem">%</span></div>
-        <div class="stat-label">of technical roles held<br>by women at Lumberfi</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">3</div>
-        <div class="stat-label">women in senior leadership &amp; product decision-making</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">100<span style="font-size:1.8rem">%</span></div>
-        <div class="stat-label">remote-flex available to all employees, always</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">12</div>
-        <div class="stat-label">paid menstrual leave<br>days per year</div>
-      </div>
-    </div>
+  <!-- ─ V. INDIA ─ -->
+  <div class="ch reveal">Chapter V</div>
+  <h2 class="reveal">From Gargi to ISRO's Mars Mission: India's Courage Was Never the Problem</h2>
+  <div class="sh reveal">700 BCE to 2014 — Philosophers, queens, revolutionaries, scientists. History kept filing them under the men beside them.</div>
 
-    <div class="progress-row reveal" id="progressBars">
-      <div class="progress-item">
-        <div class="progress-label"><span>Women in AI/ML roles</span><span>38%</span></div>
-        <div class="progress-bar"><div class="progress-fill" style="--w:0.38"></div></div>
-      </div>
-      <div class="progress-item">
-        <div class="progress-label"><span>Women in QA &amp; Dev</span><span>42%</span></div>
-        <div class="progress-bar"><div class="progress-fill" style="--w:0.42"></div></div>
-      </div>
-      <div class="progress-item">
-        <div class="progress-label"><span>Women in leadership decisions</span><span>50%</span></div>
-        <div class="progress-bar"><div class="progress-fill" style="--w:0.50"></div></div>
-      </div>
-      <div class="progress-item">
-        <div class="progress-label"><span>WFH adoption</span><span>85%</span></div>
-        <div class="progress-bar"><div class="progress-fill" style="--w:0.85"></div></div>
-      </div>
-    </div>
+  <p class="reveal"><strong>India</strong> does not need to borrow this argument from the West. In the <strong>Vedic age</strong>, <strong>Gargi Vachaknavi</strong> debated the sage <strong>Yajnavalkya</strong> in the court of <strong>King Janaka</strong> — not as an invited guest, but as an intellectual equal who pushed him to the edge of his knowledge. The <em>Brihadaranyaka Upanishad</em> preserved her questions. History neglected to make her famous. In the <strong>13th century</strong>, <strong>Razia Sultana</strong> ruled the <strong>Delhi Sultanate</strong> — the only woman to do so — holding court without purdah, riding elephants into battle. Her nobles, threatened by her competence, conspired and killed her. Her reign lasted four years. The lesson has lasted eight centuries.</p>
 
-    <div class="benefits-row reveal" style="margin-top:2.5rem;">
-      <span class="benefit-tag">🌿 Menstrual leave</span>
-      <span class="benefit-tag">🏠 Full WFH flexibility</span>
-      <span class="benefit-tag">📈 Merit-based promotion</span>
-      <span class="benefit-tag">🤝 No marriage penalty</span>
-      <span class="benefit-tag">🧠 T-shaped learning budget</span>
-      <span class="benefit-tag">⚖️ Equal on-call rotation</span>
-      <span class="benefit-tag">💬 Leadership voice in AI design</span>
-    </div>
+  <p class="reveal">The <strong>19th</strong> and early <strong>20th centuries</strong> produced a different kind of proof. <strong>Rani Lakshmibai</strong>, 29 years old, rode into battle against <strong>British</strong> forces at <strong>Jhansi</strong> with her son tied to her back. <strong>British General Hugh Rose</strong> called her "the most dangerous of the rebel leaders." <strong>Rani Chennamma</strong> of <strong>Kittur</strong> defeated a <strong>British</strong> force in <strong>1824</strong> — thirty-three years before <strong>1857</strong>. <strong>Pritilata Waddedar</strong>, at 21, led an armed raid on the <strong>Pahartali European Club</strong> — the one whose signboard read <em>Dogs and Indians not allowed</em>. Surrounded, she swallowed cyanide. Her final note: <em>I die. Let India live.</em></p>
+
+  <p class="reveal">And then there is <strong>Durgavati Devi</strong> — "Durga Bhabhi" — who disguised <strong>Bhagat Singh</strong> as her husband to smuggle him out of <strong>Lahore</strong> after the <strong>Saunders</strong> assassination, and later attempted to assassinate the <strong>Governor of Punjab</strong> herself. History remembered <strong>Bhagat Singh</strong>. She became a footnote. Which is, of course, the entire argument in miniature.</p>
+
+  <p class="reveal">The pattern continues. In <strong>2014</strong>, <strong>India's Mars Orbiter Mission</strong> succeeded on its first attempt — a feat no other nation had managed. The photographs from mission control showed rows of women scientists in bright saris, erupting in celebration. <strong>ISRO</strong>'s <em>Mangalyaan</em> was, by any measure, one of the great engineering achievements of modern science. The women who built it had been there all along. The cameras just finally pointed in the right direction.</p>
+
+  <div class="punch reveal">
+    <p>"From Gargi's court to ISRO's mission control — the courage was constant. It was the recognition that kept running late."</p>
+    <small>— India's long record, compressed</small>
   </div>
-</section>
 
-<!-- QUOTES -->
-<section class="quotes-section" id="s4">
-  <div class="quotes-inner">
-    <p class="section-label reveal">In their own words</p>
-    <h2 class="quotes-title reveal">The Women<br>Building Lumberfi's AI</h2>
-    <div class="quotes-grid reveal">
-      <div class="quote-card">
-        <span class="qmark">"</span>
-        <p class="quote-text">The debates at 11 PM about whether an AI estimate is fair — those are my most alive moments. We're not shipping features. We're building something that touches people's livelihoods. That demands empathy, not just accuracy.</p>
-        <p class="quote-name">Bhuwaneshwari</p>
-        <p class="quote-role">AI Product Lead · Lumberfi</p>
-      </div>
-      <div class="quote-card">
-        <span class="qmark">"</span>
-        <p class="quote-text">When I raise a concern about AI bias in our pricing models, it doesn't get dismissed — it gets a Jira ticket and a sprint. That's rare. That's Lumberfi.</p>
-        <p class="quote-name">Ayushi</p>
-        <p class="quote-role">Dev Lead · Lumberfi</p>
-      </div>
-      <div class="quote-card">
-        <span class="qmark">"</span>
-        <p class="quote-text">My mother chose marriage over career in '92 because she had no option. I chose Lumberfi because I had every option — and they never made me feel like a woman first, engineer second.</p>
-        <p class="quote-name">Anusha</p>
-        <p class="quote-role">Product Market Researcher · Lumberfi</p>
-      </div>
-    </div>
+  <!-- ─ VI. PAY GAP + PANDEMIC ─ -->
+  <div class="ch reveal">Chapter VI</div>
+  <h2 class="reveal">The Pandemic and the Pay Gap: From Invisibility to the Room Where It Happens</h2>
+  <div class="sh reveal">The battlefield changed. The argument didn't. Erasure in the lab. A penalty for motherhood. And a pandemic that accidentally proved what women had always said.</div>
 
-    <div class="quote-card reveal" style="margin-top:2rem; border-left-color: var(--gold);">
-      <span class="qmark" style="color:var(--gold);">"</span>
-      <p class="quote-text">Quality isn't a checkpoint — it's a mindset. Every release I sign off on has a client's livelihood attached to it. That's not pressure. That's purpose.</p>
-      <p class="quote-name">Neelima</p>
-      <p class="quote-role">Principal Quality Assurance Engineer · Lumberfi</p>
-    </div>
+  <p class="reveal">Before the boardroom, there was the laboratory. <strong>Mileva Marić</strong>, <strong>Einstein</strong>'s first wife, co-developed key equations in his early papers — buried in his fame. <strong>Cecilia Payne-Gaposchkin</strong> in <strong>1925</strong> discovered that stars are made primarily of hydrogen — her supervisor called it "clearly impossible," then published it as his own. <strong>Rosalind Franklin</strong>'s <strong>X-ray crystallography</strong> showed the double helix of <strong>DNA</strong> — <strong>Watson and Crick</strong> used her data without credit and won the <strong>Nobel</strong>. <strong>Margaret Hamilton</strong> wrote the software that landed humans on the <strong>Moon</strong>; <strong>NASA</strong> called it "a woman's intuition." <strong>Katherine Johnson</strong> calculated <strong>Apollo 11</strong>'s trajectories by hand; her job title was "computer." The discoveries were real. The names attached to them were not always hers.</p>
+
+  <div class="punch reveal">
+    <p>"She wrote the code that landed men on the Moon. Her job title was 'computer.'"</p>
+    <small>— On Katherine Johnson, Margaret Hamilton, and the grammar of erasure</small>
   </div>
-</section>
 
-<!-- AI & T-SHAPED -->
-<section class="ai-section" id="s5">
-  <div class="ai-inner">
-    <div>
-      <p class="section-label" style="color:var(--gold); opacity:0.7;">Breaking 1000 Years of Prejudice</p>
-      <h2 class="ai-title reveal">T-shaped. M-shaped.<br><em>Kannagi-shaped.</em></h2>
-      <div class="ai-body reveal">
-        <p>For a thousand years, the world told women to stay narrow. One role. One room. One lane.</p>
-        <p>Kannagi refused. She was wife, witness, prosecutor, and force of nature — all at once. <strong>Multi-domain. Uncontainable.</strong></p>
-        <p>That's exactly what AI needs now. Not specialists who only see their corner of the code. But <strong>T-shaped thinkers</strong> (deep expertise, broad empathy) and <strong>M-shaped builders</strong> (multiple domains, multiple truths) who can question what the model assumes and who it forgets.</p>
-        <p>A startup like Lumberfi is one of the rare places where young women get that platform — without being asked to shrink first. The prejudice of a thousand years doesn't break with a policy. It breaks when <strong>Niharika ensures every product ships without a single bug, Ayushi reviews the architecture, Bhuwaneshwari decides the AI product direction, and Anusha tells us what the market actually needs.</strong></p>
-        <p>That's not diversity. That's how good AI gets built.</p>
+  <!-- CLAUDIA GOLDIN BOX -->
+  <div class="goldin-box reveal">
+    <div class="goldin-header">
+      <div class="goldin-label">Economics Nobel · 2023 · Harvard</div>
+      <div class="goldin-name">Claudia Goldin — The Data Finally Has a Name for It</div>
+      <div class="goldin-sub">First woman to win the <strong>Economics Nobel</strong> solo. Her life's work: mapping why the gender pay gap persists — and naming exactly who it punishes.</div>
+    </div>
+    <div class="goldin-body">
+      <div class="goldin-entry">
+        <div class="goldin-entry-head">💊 The Silent Revolution</div>
+        <p>The <span style="background:#fff3b0;color:#5a3e00;font-weight:700;padding:1px 4px;border-radius:2px">contraceptive pill</span> in the <strong>1970s</strong> allowed women to plan careers for the first time. <span style="background:#fff3b0;color:#5a3e00;font-weight:700;padding:1px 4px;border-radius:2px">Education enrolment surged. Marriage was delayed.</span> A generation of women could choose a profession before a partner. <strong>Goldin</strong> called this a silent revolution — transformative, uncelebrated, and entirely unacknowledged by the institutions it disrupted.</p>
+      </div>
+      <div class="goldin-entry">
+        <div class="goldin-entry-head">👶 The Motherhood Penalty</div>
+        <p>Educational gaps between men and women have largely closed. <span style="background:#ffe0e0;color:#5a0000;font-weight:700;padding:1px 4px;border-radius:2px">Earnings gaps have not.</span> The gap widens sharply — often permanently — after the birth of the <strong>first child</strong>. The penalty is not for being a woman. It is for becoming a mother in a system that was never designed for mothers. Two workers, same qualifications, same employer. Then one has a child. The gap opens. It rarely closes.</p>
+      </div>
+      <div class="goldin-entry">
+        <div class="goldin-entry-head">⏱ Greedy Jobs</div>
+        <p>The highest-paying roles share one feature: they reward <strong>long, inflexible, on-demand hours</strong> disproportionately. Women who need flexibility for caregiving are funnelled into lower-paying tracks. <span style="background:#ffe0e0;color:#5a0000;font-weight:700;padding:1px 4px;border-radius:2px">The system does not penalise gender. It penalises the parent who shows up for the child.</span> That parent is still, overwhelmingly, the mother. Fix the job design — the gap closes.</p>
       </div>
     </div>
-    <div class="shape-diagram reveal">
-      <div class="shape-item">
-        <div class="shape-letter">T</div>
-        <div class="shape-name">T-Shaped</div>
-        <div class="shape-desc">Deep in one domain. Broad across engineering, business & design. Breaks the "stay in your lane" prejudice that held women back for centuries.</div>
-      </div>
-      <div class="shape-item">
-        <div class="shape-letter">M</div>
-        <div class="shape-name">M-Shaped</div>
-        <div class="shape-desc">Multiple domains of depth — AI, client psychology, market research, ethics. Exactly what Kannagi was. Exactly what AI needs.</div>
-      </div>
-      <div class="shape-item" style="border-color: rgba(212,160,23,0.3);">
-        <div class="shape-letter" style="color:var(--saffron); font-size:2rem;">🔥</div>
-        <div class="shape-name">The Kannagi Variable</div>
-        <div class="shape-desc">The courage to present uncomfortable truths to the system — even when the king, the court, or the codebase says otherwise.</div>
-      </div>
-    </div>
+    <div class="goldin-footer">"The gender pay gap is not a women's problem. It is a job design problem."<span class="goldin-cite"> — Claudia Goldin, Nobel research</span></div>
   </div>
-</section>
 
-<!-- CLOSING -->
-<section class="closing-section" id="s6">
-  <div class="closing-inner">
-    <p class="closing-kannada reveal">ದೇವೆಟ್ಟು · ಧನ್ಯವಾದಗಳು</p>
-    <p class="closing-translation reveal">With gratitude · Thank you · (Kannada)</p>
+  <p class="reveal">The <strong>pandemic</strong> of <strong>2020</strong> dissolved, almost accidentally, the invisible architecture of exclusion. Remote work ended proximity bias. The phrase "working from home" was finally applied to labour women had always performed. The terminology changed. The recognition followed — partially. Women-founded startups still received just <strong>2%</strong> of global venture capital in <strong>2023</strong>, while generating <strong>35% higher returns</strong> than all-male teams. The pipeline is not the problem. The gatekeeping is.</p>
 
-    <div class="ornament-divider reveal">✦ ✦ ✦</div>
+  <!-- ─ VII. CLOSING ─ -->
+  <div class="ch reveal">Chapter VII</div>
+  <h2 class="reveal">From Woman Leader to Leader: Visible, but Through Merit</h2>
+  <div class="sh reveal">The goal was never to be seen as exceptional. It was to stop being made invisible. The destination is the moment the category disappears — and only the performance remains.</div>
 
-    <h2 class="closing-title reveal">
-      Women at Lumberfi<br>envision an AI that doesn't<br>repeat the <em>king's mistake.</em>
-    </h2>
+  <p class="reveal">For centuries the pattern was the same: the work was real, the name attached to it was not hers. <strong>Mileva Marić</strong>'s equations. <strong>Rosalind Franklin</strong>'s helix. <strong>Katherine Johnson</strong>'s trajectories. <strong>Gargi</strong>'s questions. <strong>Durga Bhabhi</strong>'s sacrifice. This was not accident. It was architecture. <strong>Gender invisibility</strong> is not the absence of women from history. It is the presence of women in history, stripped of attribution.</p>
 
-    <div class="closing-body reveal">
-      <p>The Madurai king had data, advisors, and process. He still got it wrong — because <strong>no one in the room questioned the system.</strong></p>
-      <p>The women at Lumberfi are the Kannagis in every room. They question the model, defend the client, and build AI that doesn't repeat thousand-year-old mistakes.</p>
-      <p>In the age of AI jargon, <strong>real experience is the only thing that sells.</strong> Ours is this: a team that argues hard, ships at 2 AM, and builds something worth being proud of.</p>
-    </div>
+  <p class="reveal">The pendulum has swung toward visibility — toward counting seats, naming names, celebrating firsts. That was necessary. But it is not the destination.</p>
 
-    <p style="font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--gold); margin-bottom:0.5rem; font-style:italic;">Happy International Women's Day.</p>
-    <p style="font-family:'DM Sans',sans-serif; font-size:0.9rem; color:rgba(250,245,235,0.6); margin-bottom:0.3rem;">— Pranav Chaturvedi, Lumberfi · Whitefield, Bengaluru · March 8, 2026</p>
+  <p class="reveal"><span class="dropcap">J</span><strong>emimah Rodrigues</strong> scores an unbeaten <strong>127</strong>. The commentary reports the innings. No qualifier. No <em>"for a woman."</em> No asterisk. Just applause — proud, unremarkable, complete. That silence is the destination. Performance, not category. Merit, not gender. The long arc of <strong>8 March</strong>, from <strong>Petrograd</strong> to the crease, bends toward exactly this.</p>
 
-    <p style="font-family:'DM Mono',monospace; font-size:0.68rem; color:rgba(250,245,235,0.3); margin-top:1.5rem; margin-bottom:1rem; max-width:580px; margin-left:auto; margin-right:auto; line-height:1.7;">
-      📊 Stats on women in AI industry referenced from: 
-      <a href="https://www.weforum.org/reports/global-gender-gap-report-2024" target="_blank" style="color:rgba(212,160,23,0.6); text-decoration:underline;">weforum.org</a> · 
-      <a href="https://www.mckinsey.com/featured-insights/diversity-and-inclusion" target="_blank" style="color:rgba(212,160,23,0.6); text-decoration:underline;">mckinsey.com</a> · 
-      <a href="https://aiindex.stanford.edu/report/" target="_blank" style="color:rgba(212,160,23,0.6); text-decoration:underline;">Stanford AI Index 2024</a>. 
-      Lumberfi internal stats are illustrative of team composition at time of writing.
-    </p>
-
-    <div class="hashtags reveal">
-      <span class="hashtag">#WomensDay2026</span>
-      <span class="hashtag">#Lumberfi</span>
-      <span class="hashtag">#WomenInAI</span>
-      <span class="hashtag">#WomenInTech</span>
-      <span class="hashtag">#AIEthics</span>
-      <span class="hashtag">#StartupLife</span>
-      <span class="hashtag">#Bengaluru</span>
-      <span class="hashtag">#DiversityInTech</span>
-      <span class="hashtag">#KannagiMeetsCode</span>
-    </div>
-
-
+  <!-- LUMBERFI VOICES — woven in as the living proof -->
+  <div class="voices-bridge reveal">
+    <div class="voices-bridge-label">The argument, in the present tense</div>
+    <p class="voices-bridge-text">At <strong>LumberFi</strong> — in construction finance, the last sector anyone expected to be disrupted — four women are building the AI that prices lumber, models supply chains, and touches the livelihoods of real clients. Not as firsts. Not as tokens. As engineers, leads, researchers. The category has already dissolved. The work is all that remains.</p>
   </div>
-</section>
+
+  <div class="voices-section reveal">
+    <div class="voices-head">
+      <span class="voices-label">The Women Building LumberFi's AI</span>
+    </div>
+    <div class="voices-grid">
+      <div class="voice-card">
+        <div class="voice-quote">"The debates at <strong>11 PM</strong> about whether an AI estimate is fair — those are my most alive moments. We're not shipping features. We're building something that touches people's livelihoods. That demands empathy, not just accuracy."</div>
+        <div class="voice-person">
+          <span class="voice-name">Niharika</span>
+          <span class="voice-title">QA Engineer · LumberFi</span>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-quote">"When I raise a concern about AI bias in our pricing models, it doesn't get dismissed — it gets a <strong>Jira ticket</strong> and a sprint. That's rare. That's <strong>LumberFi</strong>."</div>
+        <div class="voice-person">
+          <span class="voice-name">Ayushi</span>
+          <span class="voice-title">Dev Lead · LumberFi</span>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-quote">"My mother chose marriage over career in <strong>'92</strong> because she had no option. I chose <strong>LumberFi</strong> because I had every option — and they never made me feel like a woman first, engineer second."</div>
+        <div class="voice-person">
+          <span class="voice-name">Anusha</span>
+          <span class="voice-title">Product Market Researcher · LumberFi</span>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-quote">"Quality isn't a checkpoint — it's a mindset. Every release I sign off on has a client's livelihood attached to it. That's not pressure. That's <strong>purpose</strong>."</div>
+        <div class="voice-person">
+          <span class="voice-name">Neelima</span>
+          <span class="voice-title">Principal Quality Assurance Engineer · LumberFi</span>
+        </div>
+      </div>
+    </div>
+    <div class="voices-foot">"Construction finance was not built for women. It was not built for technology either. Both are changing that — simultaneously, and on their own terms."</div>
+  </div>
+
+  <p class="reveal">From <strong>Petrograd</strong> in <strong>1917</strong>, to <strong>Olympe de Gouges</strong> <span style="color:var(--crimson);font-weight:700">guillotined</span> in <strong>1793</strong>, to <strong>Gargi</strong> in <strong>700 BCE</strong>, to the <strong>Night Witches</strong> over the <strong>Eastern Front</strong>, to <strong>Indira Gandhi</strong> winning a war while <strong>Nixon</strong> reached for an insult — the question was never <em>can she?</em> The question was always <em>who decided she couldn't?</em></p>
+
+  <!-- DUAL CLOSING TILE — Bentinck + Roy -->
+  <div class="dual-tile reveal">
+    <div class="dual-tile-head">
+      <span class="dual-tile-label">The Men Who Said It First — and Meant It</span>
+      <span class="dual-tile-sub">India · 19th century · The reform that preceded the revolution</span>
+    </div>
+    <div class="dual-tile-quotes">
+      <div class="dual-quote">
+        <div class="dual-ornament">"</div>
+        <blockquote>The practice of Sati is revolting to the feelings of human nature. It is nowhere enjoined by the religion of the Hindoos as an imperative duty.</blockquote>
+        <div class="dual-attr">Lord William Bentinck<br><span>Governor-General of India · Bengal Sati Regulation · 1829</span></div>
+      </div>
+      <div class="dual-divider"></div>
+      <div class="dual-quote">
+        <div class="dual-ornament">"</div>
+        <blockquote>If the women of this country are properly educated, they can serve the country in many ways.</blockquote>
+        <div class="dual-attr">Raja Ram Mohan Roy<br><span>Social reformer · Founder, Brahmo Samaj · 1820s</span></div>
+      </div>
+    </div>
+    <div class="dual-tile-foot">The revolution did not wait for men to approve it. But some men, at least, were paying attention.</div>
+  </div>
+
+</article>
+
+</div><!-- /layout -->
+
+<footer>
+  <div class="ft">The Long March · 8 March 2026</div>
+  <div class="fs">International Women's Day Editorial<br>The question was never <em>can she?</em> The question was always <em>who decided she couldn't?</em></div>
+</footer>
 
 <script>
-  // Read progress
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('readProgress').style.transform = `scaleX(${scrolled / total})`;
-  });
+// Reading progress
+window.addEventListener('scroll', () => {
+  const d = document.documentElement;
+  const pct = d.scrollTop / (d.scrollHeight - d.clientHeight) * 100;
+  document.getElementById('prog').style.width = pct + '%';
+});
 
-  // Reveal on scroll
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(r => observer.observe(r));
-
-  // Progress bars animation
-  const barObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      document.querySelectorAll('.progress-fill').forEach((bar, i) => {
-        setTimeout(() => {
-          bar.style.transform = `scaleX(${getComputedStyle(bar).getPropertyValue('--w') || bar.style.getPropertyValue('--w')})`;
-          bar.classList.add('animated');
-        }, i * 200 + 300);
-      });
-    }
-  }, { threshold: 0.5 });
-  const pb = document.getElementById('progressBars');
-  if (pb) barObserver.observe(pb);
-
-  // Nav dots
-  const sections = ['s0','s1','s2','s3','s4','s5','s6'].map(id => document.getElementById(id));
-  const dots = document.querySelectorAll('.nav-dot');
-
-  window.addEventListener('scroll', () => {
-    let current = 0;
-    sections.forEach((s, i) => {
-      if (s && window.scrollY >= s.offsetTop - window.innerHeight / 2) current = i;
-    });
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
-  });
-
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      sections[i]?.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
